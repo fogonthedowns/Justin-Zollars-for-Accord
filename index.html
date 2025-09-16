@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JZ Films</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <h1>🎬 JZ Films</h1>
+        <form id="search-form">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Search for a movie..."
+          />
+          <button type="submit">Search</button>
+        </form>
+        <a href="#" id="my-movies-link" style="
+          background: white;
+          color: black;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 1rem;
+          padding: 0.875rem 2rem;
+          border-radius: 50px;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        ">My Movies</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="results" class="grid"></section>
+
+      <aside>
+        <div class="sidebar-box">
+          <h2>Watched</h2>
+          <ul id="watched-list"></ul>
+          <div id="share-button-container"></div>
+        </div>
+
+        <div class="sidebar-box">
+          <h2>Recently Viewed</h2>
+          <ul id="recently-viewed-list"></ul>
+        </div>
+      </aside>
+    </main>
+
+    <div id="modal" class="hidden"></div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
