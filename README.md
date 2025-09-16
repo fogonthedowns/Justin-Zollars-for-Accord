@@ -2,6 +2,13 @@
 
 A very simple movie discovery app with personal tracking and sharing capabilities.
 
+## Depled to AWS S3 with Cloudfront:
+
+- deployed with two simple commands:
+
+   1. aws s3 sync ./ s3://jz.io/ --acl public-read --exclude ".git/*"
+   2. aws cloudfront create-invalidation --distribution-id E9KIROWWL1OJ2 --paths "/*"
+
 ## Design Decisions
 - **Very simple single page app**
   - done in 2 hours
