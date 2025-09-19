@@ -1,0 +1,55 @@
+@startuml JZ Films - Zero Infrastructure Architecture
+
+!theme plain
+skinparam backgroundColor #FFFFFF
+
+title JZ Films - Model (app.ts) → Controller (main.ts) → Direct DOM Views (main.ts)
+
+actor User as U
+node "Browser\n(Zero Backend)" as Browser {
+  component "Single Page App\n(main.ts + app.ts + api.ts)" as SPA
+  database "localStorage\nPersistence" as LS
+}
+cloud "TMDB API\n(External)" as TMDB
+
+' Core flows
+U <--> Browser : Search, Click, Share
+SPA <--> LS : Read/Write State
+SPA <--> TMDB : HTTP Requests
+
+' Key architectural insight
+note top of Browser
+  **ZERO INFRASTRUCTURE**
+  • No backend server
+  • No database
+  • No authentication system
+  • Deployed as static files to S3+CloudFront
+end note
+
+note right of SPA
+  **Smart Features in Simple App:**
+  • Recommendation Algorithm
+  • LRU Cache (5 items)
+  • Base64 URL Sharing
+  • Real-time DOM Updates
+end note
+
+note left of TMDB
+  **6 API Endpoints:**
+  • /search/movie
+  • /movie/{id}
+  • /movie/{id}/similar
+  • /movie/{id}/recommendations
+  • /movie/popular
+  • /movie/top_rated
+end note
+
+note bottom of LS
+  **4 Storage Keys:**
+  • watched (movie IDs)
+  • watchedMovies (full objects)
+  • userName (string)
+  • recentlyViewed (LRU cache)
+end note
+
+@enduml
